@@ -29,13 +29,15 @@ class Play extends Phaser.Scene
         this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2.5, 0x1d93a5).setOrigin(0,0);
         this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2, 0x81eeff).setOrigin(0,0);
 
+        /*
         // canvas borders
         this.add.rectangle(0, 0, game.config.width, borderUIsize, 0x8bffa8).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0x1fd24c).setOrigin(0,0);
         this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x8bffa8).setOrigin(0,1);
         this.add.rectangle(0, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
         this.add.rectangle(game.config.width - borderUIsize, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
-    
+        */
+
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
 
