@@ -18,7 +18,12 @@ class Play extends Phaser.Scene
     {
         // implementing starfield scroll
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
-        
+    
+        // adding spaceships x3
+        this.spaceship01 = new Spaceship(this, game.config.width + borderUIsize * 6, borderUIsize * 4, 'spaceship', 0, 30).setOrigin(0, 0);
+        this.spaceship02 = new Spaceship(this, game.config.width + borderUIsize * 3, borderUIsize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
+        this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
+
         // green UI background
         this.add.rectangle(0, borderUIsize + borderPadding, game.config.width, borderUIsize * 2, 0x00FF00).setOrigin(0,0);
         
@@ -30,11 +35,7 @@ class Play extends Phaser.Scene
     
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
-    
-        // adding spaceships x3
-        this.spaceship01 = new Spaceship(this, game.config.width + borderUIsize * 6, borderUIsize * 4, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.spaceship02 = new Spaceship(this, game.config.width + borderUIsize * 3, borderUIsize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
-        this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
+
 
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -49,5 +50,37 @@ class Play extends Phaser.Scene
         this.spaceship01.update();
         this.spaceship02.update();
         this.spaceship03.update();
+
+        if(this.checkCollision(this.p1Rocket, this.spaceship01))
+        {
+            this.p1Rocket.reset();
+            this.spaceship01.reset();
+        }        
+        if(this.checkCollision(this.p1Rocket, this.spaceship02))
+        {
+            this.p1Rocket.reset();
+            this.spaceship02.reset();
+        }        
+        if(this.checkCollision(this.p1Rocket, this.spaceship03))
+        {
+            this.p1Rocket.reset();
+            this.spaceship03.reset();
+        }
+    }
+
+    checkCollision(rocket, ship)
+    {
+        // "simple aabb" checking apparently
+        if (rocket.x < ship.x + ship.width &&
+            rocket.x + rocket.width > ship.x &&
+            rocket.y < ship.y + ship.height &&
+            rocket.y + rocket.height > ship.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false
+        }
     }
 }
