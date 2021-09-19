@@ -32,8 +32,8 @@ class Play extends Phaser.Scene
 
         
         // canvas borders were removed because they were hella ugly
-        this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize, 0x697678).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0xb2aba4).setOrigin(0,1);
+        this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x535353).setOrigin(0,1);
 
         /*
         this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0x1fd24c).setOrigin(0,0);
