@@ -11,6 +11,7 @@ class Play extends Phaser.Scene
     this.load.image('rocket', './assets/rocket.png');
     this.load.image('spaceship', './assets/spaceship.png');
     this.load.image('starfield', './assets/starfield.png');
+    this.load.image('launchpad', './assets/launchpad.png');
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
@@ -26,18 +27,23 @@ class Play extends Phaser.Scene
         this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
         
         // UI background
-        this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2.5, 0x1d93a5).setOrigin(0,0);
-        this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2, 0x81eeff).setOrigin(0,0);
+        this.add.rectangle(0, borderUIsize, game.config.width / 4.1, borderUIsize * 2.5, 0x1fd24c).setOrigin(0,0);
+        this.add.rectangle(0, borderUIsize, game.config.width / 4.1, borderUIsize * 2, 0x8bffa8).setOrigin(0,0);
+
+        
+        // canvas borders were removed because they were hella ugly
+        this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize, 0x697678).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0xb2aba4).setOrigin(0,1);
 
         /*
-        // canvas borders
-        this.add.rectangle(0, 0, game.config.width, borderUIsize, 0x8bffa8).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0x1fd24c).setOrigin(0,0);
         this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x8bffa8).setOrigin(0,1);
         this.add.rectangle(0, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
         this.add.rectangle(game.config.width - borderUIsize, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
         */
 
+        // adding launchpad to go under the rocket
+        this.p1Launchpad = new Launchpad(this, game.config.width / 2, game.config.height - borderUIsize - borderPadding, 'launchpad').setOrigin(0.5, 0);
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
 
@@ -74,11 +80,12 @@ class Play extends Phaser.Scene
 
     update()
     {
-        this.starfield.tilePositionX -= 2;
+        this.starfield.tilePositionX -= 1;
         this.p1Rocket.update();
         this.spaceship01.update();
         this.spaceship02.update();
         this.spaceship03.update();
+        this.p1Launchpad.update(this.p1Rocket);
 
         if(this.checkCollision(this.p1Rocket, this.spaceship01))
         {
