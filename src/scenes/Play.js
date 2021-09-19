@@ -24,15 +24,17 @@ class Play extends Phaser.Scene
         this.spaceship01 = new Spaceship(this, game.config.width + borderUIsize * 6, borderUIsize * 4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.spaceship02 = new Spaceship(this, game.config.width + borderUIsize * 3, borderUIsize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
         this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
-
-        // green UI background
-        this.add.rectangle(0, borderUIsize + borderPadding, game.config.width, borderUIsize * 2, 0x00FF00).setOrigin(0,0);
         
-        // white canvas borders
-        this.add.rectangle(0, 0, game.config.width, borderUIsize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0xFFFFFF).setOrigin(0,0);
-        this.add.rectangle(0, 0, borderUIsize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUIsize, 0, borderUIsize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        // UI background
+        this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2.5, 0x1d93a5).setOrigin(0,0);
+        this.add.rectangle(0, borderUIsize, game.config.width, borderUIsize * 2, 0x81eeff).setOrigin(0,0);
+
+        // canvas borders
+        this.add.rectangle(0, 0, game.config.width, borderUIsize, 0x8bffa8).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0x1fd24c).setOrigin(0,0);
+        this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x8bffa8).setOrigin(0,1);
+        this.add.rectangle(0, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUIsize, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
     
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
@@ -53,18 +55,19 @@ class Play extends Phaser.Scene
         this.p1Score = 0;
 
         let scoreConfig = {
-            fontFamily : 'Courier',
+            fontFamily : 'Trebuchet MS',
             fontSize : '28px',
-            backgroundColor : '#F3B141',
-            color : '#843605',
+            backgroundColor : '#dafaff',
+            color : '#1d93a5',
             align : 'right',
             padding: {
                 top : 5,
-                bottom : 5
+                bottom : 5,
+                right : 5
             },
             fixedWidth : 100
         }
-        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding*2, this.p1Score, scoreConfig)
+        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding, this.p1Score, scoreConfig)
     }
 
     update()
