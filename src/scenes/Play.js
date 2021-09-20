@@ -55,7 +55,7 @@ class Play extends Phaser.Scene
         */
 
         // adding launchpad to go under the rocket
-        this.p1Launchpad = new Launchpad(this, game.config.width / 2, game.config.height - borderUIsize - borderPadding, 'launchpad').setOrigin(0.5, 0);
+        this.p1Launchpad = new Launchpad(this, game.config.width / 2, game.config.height - borderUIsize - borderPadding * 0.9, 'launchpad').setOrigin(0.5, 0);
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
 
