@@ -26,14 +26,17 @@ class Play extends Phaser.Scene
         this.spaceship01 = new Spaceship(this, game.config.width + borderUIsize * 6, borderUIsize * 4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.spaceship02 = new Spaceship(this, game.config.width + borderUIsize * 3, borderUIsize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
         this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
-        
+    
+        // UI background/background
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.1, 0x820404).setOrigin(0,0);
+
         // score background sprites
         this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 1.8, 'scorebulb').setOrigin(0.0);
         this.add.sprite(borderUIsize * 1.5, borderPadding * .5, 'scorebulb').setOrigin(0.0);
 
         // UI background
-        this.add.rectangle(0, borderUIsize, borderUIsize + borderPadding * 1.9, borderUIsize * 2.1, 0xa73030).setOrigin(0,0);
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 2, borderUIsize * 3, 0xe13333).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0x820404).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0,0);
         
         // most canvas borders were removed because they were hella ugly
         this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
