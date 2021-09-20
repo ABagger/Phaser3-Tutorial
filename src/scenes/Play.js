@@ -31,11 +31,11 @@ class Play extends Phaser.Scene
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.1, 0x820404).setOrigin(0,0);
 
         // score background sprites
-        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 1.8, 'scorebulb').setOrigin(0.0);
-        this.add.sprite(borderUIsize * 1.5, borderPadding * .5, 'scorebulb').setOrigin(0.0);
+        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0.0);
+        this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0.0);
 
         // UI background
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0x820404).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0,0);
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0,0);
         
         // most canvas borders were removed because they were hella ugly
@@ -71,19 +71,19 @@ class Play extends Phaser.Scene
 
         let scoreConfig = {
             fontFamily : 'Courier', // 'bold',
-            fontSize : '30px',
+            fontSize : '28px',
             //backgroundColor : '#ffffff',
             //image : 'scorebulb',
             color : '#dcffce',
             align : 'right',
             padding: {
-                top : 5,
-                bottom : 5,
+                top : 7,
+                bottom : 0,
                 right : 5
             },
             fixedWidth : 100
         }
-        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding * 1.8, this.p1Score, scoreConfig)
+        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding * 2.2, this.p1Score, scoreConfig)
     }
 
     update()
