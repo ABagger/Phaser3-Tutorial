@@ -12,6 +12,7 @@ class Play extends Phaser.Scene
     this.load.image('spaceship', './assets/spaceship.png');
     this.load.image('starfield', './assets/starfield.png');
     this.load.image('launchpad', './assets/launchpad.png');
+    this.load.image('scorebulb', './assets/scorebulb.png');
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
@@ -26,12 +27,15 @@ class Play extends Phaser.Scene
         this.spaceship02 = new Spaceship(this, game.config.width + borderUIsize * 3, borderUIsize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
         this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
         
-        // UI background
-        this.add.rectangle(0, borderUIsize, game.config.width / 4.1, borderUIsize * 2.5, 0x1fd24c).setOrigin(0,0);
-        this.add.rectangle(0, borderUIsize, game.config.width / 4.1, borderUIsize * 2, 0x8bffa8).setOrigin(0,0);
+        // score background sprites
+        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 1.8, 'scorebulb').setOrigin(0.0);
+        this.add.sprite(borderUIsize * 1.5, borderPadding * .5, 'scorebulb').setOrigin(0.0);
 
+        // UI background
+        this.add.rectangle(0, borderUIsize, borderUIsize + borderPadding * 1.9, borderUIsize * 2.1, 0xff7c7c).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 2, borderUIsize * 3, 0xf64343).setOrigin(0,0);
         
-        // canvas borders were removed because they were hella ugly
+        // most canvas borders were removed because they were hella ugly
         this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x535353).setOrigin(0,1);
 
@@ -57,16 +61,17 @@ class Play extends Phaser.Scene
         this.anims.create({
             key: 'explode',
             frames: this.anims.generateFrameNumbers('explosion', {start : 0, end : 9, first : 0}),
-            framerate:30
+            framerate: 24
         })
 
         this.p1Score = 0;
 
         let scoreConfig = {
-            fontFamily : 'Trebuchet MS',
-            fontSize : '28px',
-            backgroundColor : '#dafaff',
-            color : '#1d93a5',
+            fontFamily : 'Courier', // 'bold',
+            fontSize : '30px',
+            //backgroundColor : '#ffffff',
+            //image : 'scorebulb',
+            color : '#dcffce',
             align : 'right',
             padding: {
                 top : 5,
@@ -75,7 +80,7 @@ class Play extends Phaser.Scene
             },
             fixedWidth : 100
         }
-        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding, this.p1Score, scoreConfig)
+        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding * 1.8, this.p1Score, scoreConfig)
     }
 
     update()
