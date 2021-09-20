@@ -13,6 +13,7 @@ class Play extends Phaser.Scene
     this.load.image('starfield', './assets/starfield.png');
     this.load.image('launchpad', './assets/launchpad.png');
     this.load.image('scorebulb', './assets/scorebulb.png');
+    this.load.image('target', './assets/target.png');
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
@@ -31,13 +32,16 @@ class Play extends Phaser.Scene
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.1, 0x820404).setOrigin(0,0);
 
         // score background sprites
-        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0.0);
-        this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0.0);
+        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0, 0);
+        this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0, 0);
 
         // UI background
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0,0);
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0, 0);
         
+        this.add.sprite(borderUIsize / 2.5, borderUIsize * 2.1 - borderPadding, 'target').setOrigin(0, 0);
+        this.add.sprite(borderUIsize / 2.5, borderPadding, 'target').setOrigin(0, 0);
+
         // most canvas borders were removed because they were hella ugly
         this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x535353).setOrigin(0,1);
