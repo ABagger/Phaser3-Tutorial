@@ -14,6 +14,7 @@ class Play extends Phaser.Scene
     this.load.image('launchpad', './assets/launchpad.png');
     this.load.image('scorebulb', './assets/scorebulb.png');
     this.load.image('target', './assets/target.png');
+    this.load.image('clock', './assets/clock.png');
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
@@ -40,7 +41,7 @@ class Play extends Phaser.Scene
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0, 0);
         
         this.add.sprite(borderUIsize / 2.5, borderUIsize * 2.1 - borderPadding, 'target').setOrigin(0, 0);
-        this.add.sprite(borderUIsize / 2.5, borderPadding, 'target').setOrigin(0, 0);
+        this.add.sprite(borderUIsize / 2.5, borderPadding, 'clock').setOrigin(0, 0);
 
         // most canvas borders were removed because they were hella ugly
         this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
