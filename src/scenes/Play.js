@@ -18,7 +18,6 @@ class Play extends Phaser.Scene
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
-
     create()
     {
         // implementing starfield scroll
@@ -78,7 +77,6 @@ class Play extends Phaser.Scene
             fontFamily : 'Courier', // 'bold',
             fontSize : '28px',
             //backgroundColor : '#ffffff',
-            //image : 'scorebulb',
             color : '#dcffce',
             align : 'right',
             padding: {
@@ -89,16 +87,64 @@ class Play extends Phaser.Scene
             fixedWidth : 100
         }
         this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding * 2.2, this.p1Score, scoreConfig)
+
+        let gameOverConfig = {
+            fontFamily : 'Courier', // 'bold',
+            fontSize : '28px',
+            backgroundColor : '#000000',
+            color : '#b1fb94',
+            align : 'center',
+            padding: 5,
+            fixedWidth : 400,
+        }
+
+        this.gameOver = false;
+        let gameTime = 59;
+
+        // game over window
+        this.clock = this.time.delayedCall(gameTime * 1000, () => {
+            this.add.rectangle(game.config.width/2 + borderPadding / 4, game.config.height / 2  + borderPadding / 4, gameOverConfig.fixedWidth + borderPadding/3, 200, 0x278027).setOrigin(0.5);
+            this.add.rectangle(game.config.width/2, game.config.height/2, gameOverConfig.fixedWidth + borderPadding/3, 200, 0xb1fb94).setOrigin(0.5);
+            this.add.rectangle(game.config.width/2, game.config.height/2, gameOverConfig.fixedWidth, 200 - borderPadding/3, 0x000000).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 - borderUIsize, 'MISSION OVER', gameOverConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 32 - borderUIsize, 'Press (R) to Restart', gameOverConfig).setOrigin(0.5);
+            this.gameOver = true;
+        }, null, this);
+
+        let timeLeft = this.add.text(borderUIsize + borderPadding, borderPadding / 1.9, '0:' + gameTime, scoreConfig);
+        
+        function countdown()
+        {
+            if (gameTime > 0) 
+                gameTime -= 1;
+
+            // making sure countdown timer is appropriately formatted
+            if (gameTime > 9)
+                timeLeft.setText('0:' + (gameTime));
+            else
+            timeLeft.setText('0:0' + (gameTime));
+
+        }
+
+        let timedEvent = this.time.addEvent({ delay: 1000, callback: countdown, callbackScope: this, loop: true });
     }
 
     update()
     {
-        this.starfield.tilePositionX -= 1;
-        this.p1Rocket.update();
-        this.spaceship01.update();
-        this.spaceship02.update();
-        this.spaceship03.update();
-        this.p1Launchpad.update(this.p1Rocket);
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) 
+        {
+            this.scene.restart();
+        }
+
+        if(!this.gameOver)
+        {
+            this.starfield.tilePositionX -= 1;
+            this.p1Rocket.update();
+            this.spaceship01.update();
+            this.spaceship02.update();
+            this.spaceship03.update();
+            this.p1Launchpad.update(this.p1Rocket);
+        }
 
         if(this.checkCollision(this.p1Rocket, this.spaceship01))
         {
@@ -148,7 +194,5 @@ class Play extends Phaser.Scene
         // increment score and increase counter
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
-
-
     }
 }
