@@ -5,12 +5,17 @@ class Spaceship extends Phaser.GameObjects.Sprite
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.points = pointValue;
-        this.moveSpeed = 2;
+        this.moveSpeed = 1;
+        this.displacement = 10;
+        this.startY = this.y;
+        this.period = 5.0 + (15.0 * Math.random())
     }
 
     update()
     {
-        this.x -= this.moveSpeed;
+        // adding sine-like movements w/ variable speed
+        this.x -= 1 + this.moveSpeed * Math.abs(Math.cos(this.x + Math.PI / 2));
+        this.y = this.startY + this.displacement * Math.cos((this.x / this.period) + this.startY);
 
         // adding 'wrap-around'
         if(this.x <= 0 - this.width)
@@ -22,5 +27,8 @@ class Spaceship extends Phaser.GameObjects.Sprite
     reset()
     {
         this.x = game.config.width;
+        // reroll ship speed and period with reset
+        this.period = 5.0 + (15.0 * Math.random())
+        this.moveSpeed = 1 + 1.5 * Math.random()
     }
 }
