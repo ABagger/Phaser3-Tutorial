@@ -183,6 +183,9 @@ class Play extends Phaser.Scene
     {
         // hide real ship
         ship.alpha = 0;
+        // reroll ship speed and period with reset
+        ship.period = 8.0 + (15.0 * Math.random())
+        ship.moveSpeed = 1 + 1.2 * Math.random()
         // create explosion
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode');

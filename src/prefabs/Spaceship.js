@@ -27,8 +27,5 @@ class Spaceship extends Phaser.GameObjects.Sprite
     reset()
     {
         this.x = game.config.width;
-        // reroll ship speed and period with reset
-        this.period = 5.0 + (15.0 * Math.random())
-        this.moveSpeed = 1 + 1.5 * Math.random()
     }
 }
