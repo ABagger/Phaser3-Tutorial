@@ -3,7 +3,12 @@
 This game is a project I have undertaken as a way to 
 learn the Phaser3 engine. It is based on the 1978 game 
 Rocket Patrol for the APF-MP1000 (rolls right off the 
-tongue, doesn't it?)
+tongue, doesn't it?) 
+
+I have aimed to improve the base game, both graphically 
+and mechanically; Notably I've added more complex ship 
+movement, a visible countdown timer, and about a dozen
+tweaks to things like rocket and scroll speed.
 
 As of 9/21 this project is still in progress
 
