@@ -3,7 +3,9 @@
 This game is a project I have undertaken as a way to 
 learn the Phaser3 engine. It is based on the 1978 game 
 Rocket Patrol for the APF-MP1000 (rolls right off the 
-tongue, doesn't it?) 
+tongue, doesn't it?) This is the tutorial which provided
+the framework that I built additional features on top of:
+http://ex-artist.com/CMPM120/Tutorials/Phaser%203%20Rocket%20Patrol%20Tutorial.html
 
 I have aimed to improve the base game, both graphically 
 and mechanically; Notably I've added more complex ship 
