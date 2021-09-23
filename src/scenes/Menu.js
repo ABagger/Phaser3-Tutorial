@@ -8,10 +8,13 @@ class Menu extends Phaser.Scene
     preload()
     {
         this.load.image('title', './assets/title.png');
+        this.load.spritesheet('title anim', './assets/title_anim.png', {frameWidth : 256, frameHeight : 128, startFrame : 0, endFrame : 29});
     }
 
     create()
     {
+        let titleHasPlayed = false;
+
         let menuConfig = {
             fontFamily : 'Courier', // 'bold',
             fontSize : '18px',
@@ -20,15 +23,29 @@ class Menu extends Phaser.Scene
             align : 'center',
         }
 
-        this.add.text(320, 260, 'Press F to begin', menuConfig).setOrigin(.5, 0);
-        this.add.image(320, 260, 'title').setOrigin(.5, 1);
+        this.anims.create({
+            key: 'fade in',
+            frames: this.anims.generateFrameNumbers('title anim', {start : 0, end : 29, first : 0}),
+            framerate: 17
+        })
+
+        let title = this.add.sprite(320, 260, 'title anim').setOrigin(0.5,1);
+        title.anims.play('fade in');
+        title.on('animationcomplete', () => {
+            this.add.text(320, 260, 'Press F to begin', menuConfig).setOrigin(.5, 0);
+            this.add.image(320, 260, 'title').setOrigin(.5, 1);
+            title.destroy();
+            this.titleHasPlayed = true;
+        })
+
+
 
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
 
     update()
     {
-        if(Phaser.Input.Keyboard.JustDown(keyF))
+        if(Phaser.Input.Keyboard.JustDown(keyF) && this.titleHasPlayed)
             this.scene.start('playScene');
     }
 }
