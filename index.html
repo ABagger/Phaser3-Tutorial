@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+#container
+{
+    position: absolute;
+}
+
+#container > * 
+{
+    position: absolute;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: auto;
+    display: inline-block;
+    position: absolute;
+    z-index: 11;
+    top: 525px;
+    bottom: 0;
+    left: -575px;
+    right: 0;
+    cursor: pointer;
+}
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +43,10 @@
     <script src="./src/scenes/Menu.js"></script>
     <script src="./src/scenes/Play.js"></script>
     <script src="./src/main.js"></script>
-    <img src="./assets/gameborder.png">
+    <img id="container" src="./assets/gameborder.png">
+        <form action="https://youtu.be/dQw4w9WgXcQ">
+            <button type="submit" class="button"></button>
+        </form>
+    </img>
 </body>
 </html>

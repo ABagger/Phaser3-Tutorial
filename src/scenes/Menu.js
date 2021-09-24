@@ -10,12 +10,14 @@ class Menu extends Phaser.Scene
         this.load.image('title', './assets/title.png');
         this.load.audio('sfx_select', './assets/select.wav');
         this.load.audio('sfx_liftoff', './assets/liftoff.wav');
+        this.load.audio('sfx_start', './assets/title_theme.wav');
         this.load.spritesheet('title anim', './assets/title_anim.png', {frameWidth : 256, frameHeight : 128, startFrame : 0, endFrame : 29});
     }
 
     create()
     {
         let titleHasPlayed = false;
+        let soundHasPlayed = false;
 
         let menuConfig = {
             fontFamily : 'Courier', // 'bold',
@@ -39,15 +41,20 @@ class Menu extends Phaser.Scene
             title.destroy();
             this.titleHasPlayed = true;
         })
-
-
-
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
 
     update()
     {
+        if(!this.soundHasPlayed)
+        {
+            // this.sound.play('sfx_start');
+            this.soundHasPlayed = true;
+        }
+
         if(Phaser.Input.Keyboard.JustDown(keyF) && this.titleHasPlayed)
+        {
             this.scene.start('playScene');
+        }
     }
 }
