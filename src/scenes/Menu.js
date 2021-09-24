@@ -8,6 +8,8 @@ class Menu extends Phaser.Scene
     preload()
     {
         this.load.image('title', './assets/title.png');
+        this.load.audio('sfx_select', './assets/select.wav');
+        this.load.audio('sfx_liftoff', './assets/liftoff.wav');
         this.load.spritesheet('title anim', './assets/title_anim.png', {frameWidth : 256, frameHeight : 128, startFrame : 0, endFrame : 29});
     }
 

@@ -15,6 +15,11 @@ class Play extends Phaser.Scene
     this.load.image('scorebulb', './assets/scorebulb.png');
     this.load.image('target', './assets/target.png');
     this.load.image('clock', './assets/clock.png');
+    
+    // preloading sfx
+    this.load.audio('sfx_explosion', './assets/explosion.wav');
+    this.load.audio('sfx_liftoff', './assets/liftoff.wav');
+
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
@@ -181,6 +186,8 @@ class Play extends Phaser.Scene
 
     shipExplode(ship)
     {
+        // play explosion sound
+        this.sound.play('sfx_explosion');
         // hide real ship
         ship.alpha = 0;
         // reroll ship speed and period with reset
