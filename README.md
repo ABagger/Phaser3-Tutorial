@@ -12,10 +12,19 @@ and mechanically; Notably I've added more complex ship
 movement, a visible countdown timer, and about a dozen
 tweaks to things like rocket and scroll speed.
 
-As of 9/21 this project is still in progress
+As of 9/27 this project is still in progress
 
-Features yet to be added:
-- Start menu (top priority)
-- SFX & Music (close second)
-- Particles (only if it still needs polish)
+# Changes yet to be made:
+- Start menu
+  - add startup sound
+  - add bootup sequence
+- SFX & Music
+  - startup
+  - select
+- Webpage
+  - add stickynote
+  - adjust border sprite
+  - add link to source code
+- Particles
+  - only if game needs polish
 - Multiplayer (only if I'm very bored)
