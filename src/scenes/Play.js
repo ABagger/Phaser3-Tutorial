@@ -15,6 +15,7 @@ class Play extends Phaser.Scene
     this.load.image('scorebulb', './assets/scorebulb.png');
     this.load.image('target', './assets/target.png');
     this.load.image('clock', './assets/clock.png');
+    this.load.image('sparks', './assets/launchspark.png')
     
     // preloading sfx
     this.load.audio('sfx_explosion', './assets/explosion.wav');
@@ -51,18 +52,40 @@ class Play extends Phaser.Scene
         this.add.rectangle(0, game.config.height - 1.5 * borderUIsize, game.config.width, borderUIsize * 1.5, 0x697678).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x535353).setOrigin(0,1);
 
-        /*
-        this.add.rectangle(0, game.config.height - borderUIsize, game.config.width, borderUIsize, 0x1fd24c).setOrigin(0,0);
-        this.add.rectangle(0, game.config.height, game.config.width, borderUIsize / 2, 0x8bffa8).setOrigin(0,1);
-        this.add.rectangle(0, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUIsize, 0, borderUIsize, game.config.height, 0x8bffa8).setOrigin(0, 0);
-        */
-
         // adding launchpad to go under the rocket
         this.p1Launchpad = new Launchpad(this, game.config.width / 2, game.config.height - borderUIsize - borderPadding * 0.9, 'launchpad').setOrigin(0.5, 0);
         // adding rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUIsize - borderPadding, 'rocket').setOrigin(.5, 0);
 
+        // adding sparks to the rocket
+        this.sparks = this.add.particles('sparks')
+        
+        this.emitter1 = this.sparks.createEmitter({
+            x: 0,
+            y: 0,
+            angle: {min: 110, max: 70},
+            speedY: 20,
+            speedX: {min: -20, max: 20},
+            gravityY: 10,
+            scale: {min: .5, max: 2},
+            lifespan: {min: 50, max: 100},
+            blendMode: 'DIVIDE'
+        })
+
+        this.emitter2 = this.sparks.createEmitter({
+            x: 0,
+            y: 0,
+            speedX: {min: -200, max: 200},
+            speedY: {min: -150, max: 150},
+            acceleration: true,
+            scale: {min: .5, max: 1},
+            lifespan: {min: 100, max: 250},
+            tint: 'RED',
+            blendMode: 'MULTIPLY'
+        })
+
+        this.emitter1.stop()
+        this.emitter2.stop()
 
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -141,6 +164,17 @@ class Play extends Phaser.Scene
             this.scene.restart();
         }
 
+        // moving particle system to match ship
+        if(this.p1Rocket.isFiring)
+        {
+            this.emitter1.start()
+            this.emitter1.setPosition(this.p1Rocket.x, this.p1Rocket.y + 4)
+        }
+        else
+        {
+            this.emitter1.stop()
+        }
+
         if(!this.gameOver)
         {
             this.starfield.tilePositionX -= 1;
@@ -186,8 +220,10 @@ class Play extends Phaser.Scene
 
     shipExplode(ship)
     {
-        // play explosion sound
+        // play explosion sound and effect
         this.sound.play('sfx_explosion');
+
+        this.emitter2.explode(100, ship.x + ship.width/2, ship.y + ship.height/2)
         // hide real ship
         ship.alpha = 0;
         // reroll ship speed and period with reset
