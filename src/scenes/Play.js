@@ -15,7 +15,8 @@ class Play extends Phaser.Scene
     this.load.image('scorebulb', './assets/scorebulb.png');
     this.load.image('target', './assets/target.png');
     this.load.image('clock', './assets/clock.png');
-    this.load.image('sparks', './assets/launchspark.png')
+    this.load.image('sparks', './assets/launchspark.png');
+    this.load.image('controls', './assets/instructions.png');
     
     // preloading sfx
     this.load.audio('sfx_explosion', './assets/explosion.wav');
@@ -37,9 +38,10 @@ class Play extends Phaser.Scene
         // UI background/background
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.1, 0x820404).setOrigin(0,0);
 
-        // score background sprites
+        // score background sprites & instructions
         this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0, 0);
         this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0, 0);
+        this.add.image(600, 20, 'controls').setOrigin(1, 0);
 
         // UI background
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0, 0);

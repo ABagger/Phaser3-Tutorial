@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene
     preload()
     {
         this.load.image('title', './assets/title.png');
+        this.load.image('controls', './assets/instructions.png');
         this.load.audio('sfx_select', './assets/select.wav');
         this.load.audio('sfx_liftoff', './assets/liftoff.wav');
         this.load.audio('sfx_start', './assets/title_theme.wav');
@@ -38,6 +39,7 @@ class Menu extends Phaser.Scene
         title.on('animationcomplete', () => {
             this.add.text(320, 260, 'Press F to begin', menuConfig).setOrigin(.5, 0);
             this.add.image(320, 260, 'title').setOrigin(.5, 1);
+            this.add.image(600, 20, 'controls').setOrigin(1, 0);
             title.destroy();
             this.titleHasPlayed = true;
         })
