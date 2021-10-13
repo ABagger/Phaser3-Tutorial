@@ -41,7 +41,7 @@ class Play extends Phaser.Scene
         // score background sprites & instructions
         this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0, 0);
         this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0, 0);
-        this.add.image(600, 20, 'controls').setOrigin(1, 0);
+        this.add.image(600, 30, 'controls').setOrigin(1, 0);
 
         // UI background
         this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0, 0);

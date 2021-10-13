@@ -39,7 +39,7 @@ class Menu extends Phaser.Scene
         title.on('animationcomplete', () => {
             this.add.text(320, 260, 'Press F to begin', menuConfig).setOrigin(.5, 0);
             this.add.image(320, 260, 'title').setOrigin(.5, 1);
-            this.add.image(600, 20, 'controls').setOrigin(1, 0);
+            this.add.image(600, 30, 'controls').setOrigin(1, 0);
             title.destroy();
             this.titleHasPlayed = true;
         })
