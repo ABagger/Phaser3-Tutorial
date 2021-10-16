@@ -24,5 +24,4 @@ As of 10/12 this project is still in progress
   - select
 - Webpage
   - add stickynote w/ flavor text
-  - add link to source code
 - Multiplayer (only if I'm very bored)
