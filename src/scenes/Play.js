@@ -12,7 +12,7 @@ class Play extends Phaser.Scene
     this.load.image('spaceship', './assets/spaceship.png');
     this.load.image('starfield', './assets/starfield.png');
     this.load.image('launchpad', './assets/launchpad.png');
-    this.load.image('scorebulb', './assets/scorebulb.png');
+    this.load.image('scorebulb', './assets/scorebulb2.png');
     this.load.image('target', './assets/target.png');
     this.load.image('clock', './assets/clock.png');
     this.load.image('sparks', './assets/launchspark.png');
@@ -36,16 +36,16 @@ class Play extends Phaser.Scene
         this.spaceship03 = new Spaceship(this, game.config.width, borderUIsize * 6 + borderPadding * 4, 'spaceship', 0, 50).setOrigin(0, 0);
     
         // UI background/background
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.1, 0x820404).setOrigin(0,0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 2.2, borderUIsize * 3.2, 0x820404).setOrigin(0,0);
 
         // score background sprites & instructions
-        this.add.sprite(borderUIsize * 1.5, borderUIsize + borderPadding * 2.2, 'scorebulb').setOrigin(0, 0);
-        this.add.sprite(borderUIsize * 1.5, borderPadding * .6, 'scorebulb').setOrigin(0, 0);
+        this.add.sprite(borderUIsize * 1.6, borderUIsize + borderPadding * 1.9, 'scorebulb').setOrigin(0, 0);
+        this.add.sprite(borderUIsize * 1.6, borderPadding * .4, 'scorebulb').setOrigin(0, 0);
         this.add.image(600, 30, 'controls').setOrigin(1, 0);
 
         // UI background
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3, 0xf64343).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3, 0xe13333).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.9, borderUIsize * 3.1, 0xf64343).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUIsize + borderPadding * 1.5, borderUIsize * 3.1, 0xe13333).setOrigin(0, 0);
         
         this.add.sprite(borderUIsize / 2.5, borderUIsize * 2.1 - borderPadding, 'target').setOrigin(0, 0);
         this.add.sprite(borderUIsize / 2.5, borderPadding, 'clock').setOrigin(0, 0);
@@ -116,7 +116,7 @@ class Play extends Phaser.Scene
             },
             fixedWidth : 100
         }
-        this.scoreLeft = this.add.text(borderUIsize + borderPadding, borderUIsize + borderPadding * 2.2, this.p1Score, scoreConfig)
+        this.scoreLeft = this.add.text(borderUIsize + borderPadding * 1.3, borderUIsize + borderPadding * 2.2, this.p1Score, scoreConfig)
 
         let gameOverConfig = {
             fontFamily : 'Courier', // 'bold',
@@ -141,7 +141,7 @@ class Play extends Phaser.Scene
             this.gameOver = true;
         }, null, this);
 
-        let timeLeft = this.add.text(borderUIsize + borderPadding, borderPadding / 1.9, '0:' + gameTime, scoreConfig);
+        let timeLeft = this.add.text(borderUIsize + borderPadding * 1.3, borderPadding * .7, '0:' + gameTime, scoreConfig);
         
         function countdown()
         {
