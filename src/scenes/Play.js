@@ -8,21 +8,21 @@ class Play extends Phaser.Scene
     preload()
     {
     // preloading assets
-    this.load.image('rocket', './assets/rocket.png');
-    this.load.image('spaceship', './assets/spaceship.png');
-    this.load.image('starfield', './assets/starfield.png');
-    this.load.image('launchpad', './assets/launchpad.png');
-    this.load.image('scorebulb', './assets/scorebulb2.png');
-    this.load.image('target', './assets/target.png');
-    this.load.image('clock', './assets/clock.png');
-    this.load.image('sparks', './assets/launchspark.png');
-    this.load.image('controls', './assets/instructions.png');
-    
-    // preloading sfx
-    this.load.audio('sfx_explosion', './assets/explosion.wav');
-    this.load.audio('sfx_liftoff', './assets/liftoff.wav');
+        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('launchpad', './assets/launchpad.png');
+        this.load.image('scorebulb', './assets/scorebulb2.png');
+        this.load.image('target', './assets/target.png');
+        this.load.image('clock', './assets/clock.png');
+        this.load.image('sparks', './assets/launchspark.png');
+        this.load.image('controls', './assets/instructions.png');
+        
+        // preloading sfx
+        this.load.audio('sfx_explosion', './assets/explosion.wav');
+        this.load.audio('sfx_liftoff', './assets/liftoff.wav');
 
-    this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
+        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
 
     create()
@@ -106,7 +106,7 @@ class Play extends Phaser.Scene
         let scoreConfig = {
             fontFamily : 'Courier', // 'bold',
             fontSize : '28px',
-            //backgroundColor : '#ffffff',
+            // backgroundColor : '#ffffff',
             color : '#dcffce',
             align : 'right',
             padding: {
