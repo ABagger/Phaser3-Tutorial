@@ -19,6 +19,7 @@ class Menu extends Phaser.Scene
     {
         let titleHasPlayed = false;
         let soundHasPlayed = false;
+        let soundHasStarted = false;
         let isInitialized = false;
 
         this.menuConfig = {
@@ -84,13 +85,18 @@ class Menu extends Phaser.Scene
             this.isInitialized = false;
         }
 
-        if(!this.soundHasPlayed)
+        if(!this.soundHasStarted && this.titleHasPlayed)
         {
-            // this.sound.play('sfx_start');
-            this.soundHasPlayed = true;
+            this.sound.play('sfx_start');
+            this.soundHasStarted = true;
+
+            this.time.delayedCall(1300, () => {
+                this.add.text(320, 260, 'press \'f\' to play', this.menuConfig).setOrigin(.5, 0);
+                this.soundHasPlayed = true;
+            }, null, this);
         }
 
-        if(Phaser.Input.Keyboard.JustDown(keyF) && this.titleHasPlayed)
+        if(Phaser.Input.Keyboard.JustDown(keyF) && this.titleHasPlayed && this.soundHasPlayed)
         {
             this.scene.start('playScene');
         }
@@ -101,7 +107,6 @@ class Menu extends Phaser.Scene
         let title = this.add.sprite(320, 260, 'title anim').setOrigin(0.5,1);
         title.anims.play('fade in');
         title.on('animationcomplete', () => {
-            this.add.text(320, 260, 'press \'f\' to play', this.menuConfig).setOrigin(.5, 0);
             this.add.image(320, 260, 'title').setOrigin(.5, 1);
             this.add.image(320, 350, 'controls').setOrigin(.5, 0);
             title.destroy();
