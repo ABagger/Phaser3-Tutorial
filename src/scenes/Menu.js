@@ -92,6 +92,7 @@ class Menu extends Phaser.Scene
 
             this.time.delayedCall(1300, () => {
                 this.add.text(320, 260, 'press \'f\' to play', this.menuConfig).setOrigin(.5, 0);
+                this.add.text(27, 450, '↓ click here to learn more about the project!', this.menuConfig)
                 this.soundHasPlayed = true;
             }, null, this);
         }

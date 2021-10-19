@@ -13,13 +13,12 @@ and mechanically; Notably I've added more complex ship
 movement, a visible countdown timer, and about a dozen
 tweaks to things like rocket and scroll speed.
 
-As of 10/12 this project is still in progress
+You can play the game here: https://abagger.github.io/Super-Rocket-Patrol/
+
+As of 10/19 this project is still in progress
 
 # Changes yet to be made:
-- Start menu
-  - add startup sound
 - SFX & Music
-  - startup
   - select
 - Webpage
   - add stickynote w/ flavor text
