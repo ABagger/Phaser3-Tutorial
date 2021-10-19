@@ -18,7 +18,6 @@ As of 10/12 this project is still in progress
 # Changes yet to be made:
 - Start menu
   - add startup sound
-  - add bootup sequence (partially complete)
 - SFX & Music
   - startup
   - select

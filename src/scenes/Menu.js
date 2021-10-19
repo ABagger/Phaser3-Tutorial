@@ -19,10 +19,18 @@ class Menu extends Phaser.Scene
     {
         let titleHasPlayed = false;
         let soundHasPlayed = false;
+        let isInitialized = false;
 
-        let menuConfig = {
+        this.menuConfig = {
             fontFamily : 'Courier', // 'bold',
             fontSize : '18px',
+            //backgroundColor : '#ffffff',
+            color : '#dcffce',
+            align : 'center',
+        }
+        this.introConfig = {
+            fontFamily : 'Courier', // 'bold',
+            fontSize : '20px',
             //backgroundColor : '#ffffff',
             color : '#dcffce',
             align : 'center',
@@ -34,20 +42,48 @@ class Menu extends Phaser.Scene
             framerate: 17
         })
 
-        let title = this.add.sprite(320, 260, 'title anim').setOrigin(0.5,1);
-        title.anims.play('fade in');
-        title.on('animationcomplete', () => {
-            this.add.text(320, 260, 'Press F to begin', menuConfig).setOrigin(.5, 0);
-            this.add.image(320, 260, 'title').setOrigin(.5, 1);
-            this.add.image(600, 30, 'controls').setOrigin(1, 0);
-            title.destroy();
-            this.titleHasPlayed = true;
-        })
+        this.introBG1 = this.add.rectangle(game.config.width/2 + borderPadding / 4, game.config.height * (6/14)  + borderPadding / 4, 400 + borderPadding/3, 200, 0x278027).setOrigin(0.5);
+        this.introBG1 = this.add.rectangle(game.config.width/2, game.config.height * (6/14), 400 + borderPadding/3, 200, 0xb1fb94).setOrigin(0.5);
+        this.introBG1 = this.add.rectangle(game.config.width/2, game.config.height * (6/14), 400, 200 - borderPadding/3, 0x000000).setOrigin(0.5);
+        this.introTextA = this.add.text(320, 150, 'terminal initializing', this.introConfig).setOrigin(.5, 0);
+
+        this.clock = this.time.delayedCall(750, ()=> {
+            this.introTextA.text += '.';
+        }, null, this);
+
+        this.time.delayedCall(1300, ()=> {
+            this.introTextA.text += '.';
+        }, null, this);
+
+        this.time.delayedCall(2000, ()=> {
+            this.introTextA.text += '.';
+        }, null, this);
+
+        this.time.delayedCall(2500, () => {
+            this.introTextB = this.add.text(320, 190, 'new software detected!', this.menuConfig).setOrigin(.5, 0);
+        }, null, this);
+
+        this.time.delayedCall(3500, () => {
+            this.introTextC = this.add.text(320, 220, 'press \'y\' to run program', this.menuConfig).setOrigin(.5, 0);
+            this.isInitialized = true;
+        }, null, this);
+
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        keyY = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
     }
 
     update()
     {
+        if(this.isInitialized && Phaser.Input.Keyboard.JustDown(keyY) && !this.titleHasPlayed)
+        {
+            this.introTextA.destroy();
+            this.introTextB.destroy();
+            this.introTextC.destroy();
+            //this.introTextD.destroy();
+            this.playTitle();
+            this.isInitialized = false;
+        }
+
         if(!this.soundHasPlayed)
         {
             // this.sound.play('sfx_start');
@@ -58,5 +94,18 @@ class Menu extends Phaser.Scene
         {
             this.scene.start('playScene');
         }
+    }
+
+    playTitle()
+    {
+        let title = this.add.sprite(320, 260, 'title anim').setOrigin(0.5,1);
+        title.anims.play('fade in');
+        title.on('animationcomplete', () => {
+            this.add.text(320, 260, 'press \'f\' to play', this.menuConfig).setOrigin(.5, 0);
+            this.add.image(320, 260, 'title').setOrigin(.5, 1);
+            this.add.image(320, 350, 'controls').setOrigin(.5, 0);
+            title.destroy();
+            this.titleHasPlayed = true;
+        })
     }
 }

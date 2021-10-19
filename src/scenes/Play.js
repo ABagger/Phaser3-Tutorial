@@ -224,13 +224,15 @@ class Play extends Phaser.Scene
     {
         // play explosion sound and effect
         this.sound.play('sfx_explosion');
-
         this.emitter2.explode(100, ship.x + ship.width/2, ship.y + ship.height/2)
+
         // hide real ship
         ship.alpha = 0;
+
         // reroll ship speed and period with reset
         ship.period = 8.0 + (15.0 * Math.random())
         ship.moveSpeed = 1 + 1.2 * Math.random()
+
         // create explosion
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode');
@@ -239,6 +241,7 @@ class Play extends Phaser.Scene
             ship.alpha = 1;
             boom.destroy();
         })
+        
         // increment score and increase counter
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
