@@ -20,6 +20,5 @@ As of 10/19 this project is still in progress
 # Changes yet to be made:
 - SFX & Music
   - select
-- Webpage
-  - add stickynote w/ flavor text
+  - in-game music
 - Multiplayer (only if I'm very bored)
