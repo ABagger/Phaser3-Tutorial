@@ -109,7 +109,7 @@ class Menu extends Phaser.Scene
         title.anims.play('fade in');
         title.on('animationcomplete', () => {
             this.add.image(320, 260, 'title').setOrigin(.5, 1);
-            this.add.image(320, 350, 'controls').setOrigin(.5, 0);
+            this.add.image(320, 320, 'controls').setOrigin(.5, 0);
             title.destroy();
             this.titleHasPlayed = true;
         })
