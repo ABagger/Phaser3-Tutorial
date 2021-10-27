@@ -21,6 +21,7 @@ class Play extends Phaser.Scene
         // preloading sfx
         this.load.audio('sfx_explosion', './assets/explosion.wav');
         this.load.audio('sfx_liftoff', './assets/liftoff.wav');
+        this.load.audio('music', './assets/game_theme1.wav');
 
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth : 64, frameHeight : 32, startFrame : 0, endFrame : 9});
     }
@@ -157,6 +158,9 @@ class Play extends Phaser.Scene
         }
 
         let timedEvent = this.time.addEvent({ delay: 1000, callback: countdown, callbackScope: this, loop: true });
+
+        // start playing music
+        this.sound.play('music');
     }
 
     update()
