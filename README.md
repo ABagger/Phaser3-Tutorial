@@ -15,10 +15,9 @@ tweaks to things like rocket and scroll speed.
 
 You can play the game here: https://abagger.github.io/Super-Rocket-Patrol/
 
-As of 10/19 this project is still in progress
+As of 10/26 this project is still in progress
 
 # Changes yet to be made:
 - SFX & Music
-  - select
-  - in-game music
-- Multiplayer (only if I'm very bored)
+  - enable/disable buttons
+  - that's it!
