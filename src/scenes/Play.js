@@ -160,7 +160,9 @@ class Play extends Phaser.Scene
         let timedEvent = this.time.addEvent({ delay: 1000, callback: countdown, callbackScope: this, loop: true });
 
         // start playing music
-        this.sound.play('music');
+        var music = this.sound.add('music', {volume: .5});
+
+        music.play();
     }
 
     update()
@@ -227,7 +229,7 @@ class Play extends Phaser.Scene
     shipExplode(ship)
     {
         // play explosion sound and effect
-        this.sound.play('sfx_explosion');
+        this.sound.play('sfx_explosion', {detune:-600});
         this.emitter2.explode(100, ship.x + ship.width/2, ship.y + ship.height/2)
 
         // hide real ship

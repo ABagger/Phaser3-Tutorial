@@ -48,15 +48,15 @@ class Menu extends Phaser.Scene
         this.introBG1 = this.add.rectangle(game.config.width/2, game.config.height * (6/14), 400, 200 - borderPadding/3, 0x000000).setOrigin(0.5);
         this.introTextA = this.add.text(320, 150, 'terminal initializing', this.introConfig).setOrigin(.5, 0);
 
-        this.clock = this.time.delayedCall(750, ()=> {
+        this.clock = this.time.delayedCall(700, ()=> {
             this.introTextA.text += '.';
         }, null, this);
 
-        this.time.delayedCall(1300, ()=> {
+        this.time.delayedCall(1400, ()=> {
             this.introTextA.text += '.';
         }, null, this);
 
-        this.time.delayedCall(2000, ()=> {
+        this.time.delayedCall(2100, ()=> {
             this.introTextA.text += '.';
         }, null, this);
 
@@ -87,7 +87,7 @@ class Menu extends Phaser.Scene
 
         if(!this.soundHasStarted && this.titleHasPlayed)
         {
-            this.sound.play('sfx_start');
+            this.sound.play('sfx_start', {detune: 400, volume: .7});
             this.soundHasStarted = true;
 
             this.time.delayedCall(1300, () => {
