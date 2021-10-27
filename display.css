@@ -1,9 +1,8 @@
 canvas {
-    padding-left: 155px;
-    padding-top: 152px;
-    margin: 0;
+    margin-left: 145px;
+    margin-top: 80px;
     display: block;
-    position: absolute;
+    position: relative;
     top: 0;
     bottom: 0;
     left: 0;

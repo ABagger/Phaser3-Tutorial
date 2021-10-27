@@ -13,6 +13,7 @@ class Menu extends Phaser.Scene
         this.load.audio('sfx_liftoff', './assets/liftoff.wav');
         this.load.audio('sfx_start', './assets/title_theme.wav');
         this.load.spritesheet('title anim', './assets/title_anim.png', {frameWidth : 256, frameHeight : 128, startFrame : 0, endFrame : 29});
+        this.load.spritesheet('button_icons', './assets/sound_icon_sheet.png', {frameWidth : 20, frameHeight : 20, startFrame : 0, endFrame : 7});
     }
 
     create()
@@ -21,6 +22,8 @@ class Menu extends Phaser.Scene
         let soundHasPlayed = false;
         let soundHasStarted = false;
         let isInitialized = false;
+        game.sfxOn = true;
+        game.musicOn = true;
 
         this.menuConfig = {
             fontFamily : 'Courier', // 'bold',
@@ -92,7 +95,7 @@ class Menu extends Phaser.Scene
 
             this.time.delayedCall(1300, () => {
                 this.add.text(320, 260, 'press \'f\' to play', this.menuConfig).setOrigin(.5, 0);
-                this.add.text(27, 450, '↓ click here to learn more about the project!', this.menuConfig)
+                this.add.text(26, 450, '↓ click here to learn more about the project!', this.menuConfig)
                 this.soundHasPlayed = true;
             }, null, this);
         }

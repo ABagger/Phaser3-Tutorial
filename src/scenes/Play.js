@@ -161,8 +161,51 @@ class Play extends Phaser.Scene
 
         // start playing music
         var music = this.sound.add('music', {volume: .5});
-
         music.play();
+
+        // adding toggles to music and sound fx
+        this.add.rectangle(424, 31, 34, 63, 0x278027).setOrigin(0);
+        this.add.rectangle(423, 30, 34, 63, 0xb1fb94).setOrigin(0);
+        this.add.rectangle(424, 31, 32, 61, 0x000000).setOrigin(0);
+
+        var musicButton = this.add.sprite(440, 47, 'button_icons', 0).setInteractive();
+        var sfxButton = this.add.sprite(440, 77, 'button_icons', 4).setInteractive();
+
+        if(!game.musicOn)
+        {
+            musicButton.setFrame(3)
+            music.setVolume(0)
+        }
+        if(!game.sfxOn)
+            sfxButton.setFrame(7)
+
+        musicButton.on('pointerdown', () => {
+            if(game.musicOn)
+            {
+                musicButton.setFrame(3);
+                music.setVolume(0);
+                game.musicOn = false;
+            }
+            else
+            {
+                musicButton.setFrame(0);
+                music.setVolume(.7);
+                game.musicOn = true;
+            }
+        })
+
+        sfxButton.on('pointerdown', () => {
+            if(game.sfxOn)
+            {
+                sfxButton.setFrame(7);
+                game.sfxOn = false;
+            }
+            else
+            {
+                sfxButton.setFrame(4);
+                game.sfxOn = true;
+            }
+        })
     }
 
     update()
@@ -229,7 +272,9 @@ class Play extends Phaser.Scene
     shipExplode(ship)
     {
         // play explosion sound and effect
-        this.sound.play('sfx_explosion', {detune:-600});
+        if(game.sfxOn)
+            this.sound.play('sfx_explosion', {detune:-600});
+
         this.emitter2.explode(100, ship.x + ship.width/2, ship.y + ship.height/2)
 
         // hide real ship
