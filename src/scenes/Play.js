@@ -216,7 +216,7 @@ class Play extends Phaser.Scene
         }
 
         // moving particle system to match ship
-        if(this.p1Rocket.isFiring)
+        if(this.p1Rocket.isFiring && !this.gameOver)
         {
             this.emitter1.start()
             this.emitter1.setPosition(this.p1Rocket.x, this.p1Rocket.y + 4)
